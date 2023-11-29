@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoggerService } from './logger.service';
 import { ExperimentalLoggerService } from './experimental-logger.service';
+import { LegacyLogger } from './logger.legacy';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { ExperimentalLoggerService } from './experimental-logger.service';
   providers: [
     {
       provide: LoggerService,
-      useExisting: ExperimentalLoggerService,
+      useValue: LegacyLogger,
     },
   ],
 })
