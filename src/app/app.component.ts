@@ -9,7 +9,7 @@ import { ExperimentalLoggerService } from './experimental-logger.service';
   providers: [
     {
       provide: LoggerService,
-      useClass: ExperimentalLoggerService,
+      useExisting: ExperimentalLoggerService,
     },
   ],
 })
