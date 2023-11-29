@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { ApiCallService } from '../api-call.service';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { ApiCallService } from '../../api-call.service';
 
 @Component({
   selector: 'app-base',
@@ -9,7 +9,7 @@ import { ApiCallService } from '../api-call.service';
   styles: [``],
 })
 export class BaseComponent implements OnInit {
-  public heroes$!: Observable<string[]>;
+  public heroes$!: BehaviorSubject<string[]>;
   constructor(private apiCall: ApiCallService) {
     console.log('BaseConstructor');
   }

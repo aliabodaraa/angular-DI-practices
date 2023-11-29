@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from '../base/base.component';
-import { ApiCallService } from '../api-call.service';
+import { ApiCallService } from '../../api-call.service';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
