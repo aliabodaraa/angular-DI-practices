@@ -1,15 +1,13 @@
 import { Injectable, Inject } from '@angular/core';
 import { Logger } from './logger';
-import { APP_CONFIG, AppConfig } from './config.token';
+import { ApiCallService } from './api-call.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ExperimentalLoggerService implements Logger {
   prefix = 'root';
-  constructor(@Inject(APP_CONFIG) private config: AppConfig) {
-    console.log('ExperimentalLoggerService => constructor => config', config);
-  }
+  constructor(private apiCallService: ApiCallService) {}
   log(mssg: string): void {
     console.log(`${this.prefix} : (Experimental) ${mssg}`);
   }
