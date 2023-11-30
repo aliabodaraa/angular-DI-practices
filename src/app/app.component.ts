@@ -1,10 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
 import { LoggerService } from './logger.service';
 import { ExperimentalLoggerService } from './experimental-logger.service';
-import { LegacyLogger } from './logger.legacy';
-import { APP_CONFIG, AppConfig } from './commit 4/config.token';
-import { ApiCallService } from './api-call.service';
-
+import { APP_CONFIG } from './asociate_multiple_different_dervices_for_only_one_Single_token/config.token';
+export function loggerFactory(
+  injector: Injector
+): ExperimentalLoggerService | LoggerService {
+  return injector.get(APP_CONFIG).experimentalEnabled
+    ? injector.get(ExperimentalLoggerService)
+    : injector.get(LoggerService);
+}
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,12 +16,8 @@ import { ApiCallService } from './api-call.service';
   providers: [
     {
       provide: LoggerService,
-      useFactory: (config: AppConfig, apiCallService: ApiCallService) => {
-        return config.experimentalEnabled
-          ? new ExperimentalLoggerService(apiCallService)
-          : new LoggerService();
-      },
-      deps: [APP_CONFIG, ApiCallService],
+      useFactory: loggerFactory, //will resolve as a new instance of ExperimentalLoggerService
+      deps: [Injector],
     },
   ],
 })

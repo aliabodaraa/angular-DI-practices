@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { InjectionToken } from '@angular/core';
 import { ApiCallService } from 'src/app/api-call.service';
-import { Observable } from 'rxjs';
 
 export const Prev_Heroes = new InjectionToken<string[]>('prev_heroes');
 export const ALL_HEROES = new InjectionToken<string[]>('all_heroes');
