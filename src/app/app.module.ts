@@ -9,6 +9,9 @@ import { HeroOfTheMonthComponent } from './commit 3/hero-of-the-month/hero-of-th
 import { REPORTERS } from './asociate_multiple_different_dervices_for_only_one_Single_token/reports.token';
 import { BrowserReporterService } from './asociate_multiple_different_dervices_for_only_one_Single_token/browser-reporter.service';
 import { EngagingReporterService } from './asociate_multiple_different_dervices_for_only_one_Single_token/engaging-reporter.service';
+import { GalleryComponent } from './use ViewProviders/gallery/gallery.component';
+import { GallerySlideComponent } from './use ViewProviders/gallery-slide/gallery-slide.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -17,6 +20,8 @@ import { EngagingReporterService } from './asociate_multiple_different_dervices_
     Child1Component,
     LoggerConsumerComponent,
     HeroOfTheMonthComponent,
+    GalleryComponent,
+    GallerySlideComponent,
   ],
   imports: [BrowserModule],
   providers: [

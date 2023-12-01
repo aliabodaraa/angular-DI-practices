@@ -1,31 +1,22 @@
-import { Component, Injector, OnInit } from '@angular/core';
-import { LoggerService } from './logger.service';
-import { ExperimentalLoggerService } from './experimental-logger.service';
-import { APP_CONFIG } from './asociate_multiple_different_dervices_for_only_one_Single_token/config.token';
-export function loggerFactory(
-  injector: Injector
-): ExperimentalLoggerService | LoggerService {
-  return injector.get(APP_CONFIG).experimentalEnabled
-    ? injector.get(ExperimentalLoggerService)
-    : injector.get(LoggerService);
-}
+import { Component, OnInit } from '@angular/core';
+import { GalleryLoggerService } from './use ViewProviders/gallery-logger.service';
+import { GallerySlideLoggerService } from './use ViewProviders/gallery-slide-logger.service';
+
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  template: `
+    <main>
+      <app-gallery>
+        <app-gallery-slide></app-gallery-slide>
+        <app-gallery-slide></app-gallery-slide>
+      </app-gallery>
+    </main>
+  `,
   providers: [
-    {
-      provide: LoggerService,
-      useFactory: loggerFactory, //will resolve as a new instance of ExperimentalLoggerService
-      deps: [Injector],
-    },
+    { provide: GalleryLoggerService, useExisting: GallerySlideLoggerService },
   ],
 })
 export class AppComponent implements OnInit {
-  constructor(private logger: LoggerService) {}
-  ngOnInit(): void {
-    console.log(this.logger);
-    this.logger.prefix = 'App Component';
-    this.logger.log('App Component Init ...');
-  }
+  constructor() {}
+  ngOnInit(): void {}
 }
